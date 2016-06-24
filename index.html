@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <style>
+        .container {
+            margin-left:400px;
+            margin-top:50px;
+        }
+        .to {
+            font-family: "Segoe UI";
+            font-size:18px;
+            width:530px;
+        }
+        h1 {
+            font-family: "Segoe UI";
+            font-size:40px;
+            color: #3b5998;
+        }
+        p {
+            color:green;
+        }
+        .send_email {
+            font-size:15px;
+            font-family: "Segoe UI";
+        }
+        .message {
+            font-size:18px;
+        }
+    </style>
+    <title>Node.JS Email application</title>
+
+
+</head>
+<body>
+<div class="container" ng-controller="myController">
+    <h1>Email-verification System in Node.js</h1>
+    <input class="to" type="text" ng-model="email" placeholder="Enter E-mail which you want to verify"><br>
+    <button class="send_email" ng-click="submitdata(email)">Send Email</button><br>
+    <span class="message" style="color: #167bca">{{message1}}</span>
+    <span class="message" style="color:#009926">{{message2}}</span>
+    <span class="message" style="color:#009926">{{message3}}</span>
+
+
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js"></script>
+<script src="controller.js"></script>
+<script>
+    var myApp = angular.module('myApp', [ ]);
+
+    myApp.controller('myController', function($scope,$http) {
+
+        $scope.submitdata= function(email) {
+            $scope.message1 = "Sending E-mail...Please wait";
+            $http({
+                method: 'POST',
+                url: '/send',
+                data: "to=" + email,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(result){
+                console.log('result' +JSON.stringify(result));
+                if(result.error === true){
+                    $scope.message1=''
+                    $scope.message3 = "Error in sending Mail";
+                }else{
+                    $scope.message1=''
+                    $scope.message2="Email is been sent at "+email+" . Please check inbox !";
+                }
+
+            });
+
+        }
+    });
+</script>
+</body>
+</html>
