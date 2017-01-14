@@ -10,7 +10,7 @@ smtpTransport   = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
         "user": "dev.medibox@gmail.com",
-        "pass": "medibox123"
+        "pass": "me*******"
     }
 })
 
