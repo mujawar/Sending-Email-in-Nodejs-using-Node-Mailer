@@ -5,7 +5,6 @@ var redis = require('redis');
 var redisClient = redis.createClient();
 var async= require('async');
 var app =  express();
-
 smtpTransport   = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -106,7 +105,6 @@ app.get('/verify',function(req,res){
     res.end("<h1>Request is from unknown source");
 }
 });
-
 app.listen(5000,function(){
     console.log("express starting at 5000 port");
 })
