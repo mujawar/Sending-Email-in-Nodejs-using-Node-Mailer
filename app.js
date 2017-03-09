@@ -5,6 +5,7 @@ var redis = require('redis');
 var redisClient = redis.createClient();
 var async= require('async');
 var app =  express();
+
 smtpTransport   = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -12,6 +13,7 @@ smtpTransport   = nodemailer.createTransport({
         "pass": "me*******"
     }
 })
+
 var host = "localhost:5000";
 app.use(bodyParser.urlencoded({"extended" : false}));
 
@@ -65,7 +67,6 @@ app.post('/send',function(req,res){
         res.json({error:err === null ? false :true,data:data });
     });
 });
-
 app.get('/verify',function(req,res){
     console.log('host>>>>>>>>>>>>>' +JSON.stringify(req.protocol));
     if((req.protocol+"://"+req.get('host')) === ("http://"+host)) {
