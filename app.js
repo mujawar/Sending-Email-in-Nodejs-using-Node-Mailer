@@ -13,7 +13,6 @@ smtpTransport   = nodemailer.createTransport({
         "pass": "me*******"
     }
 })
-
 var host = "localhost:5000";
 app.use(bodyParser.urlencoded({"extended" : false}));
 
