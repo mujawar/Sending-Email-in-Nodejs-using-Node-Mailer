@@ -5,7 +5,6 @@ var redis = require('redis');
 var redisClient = redis.createClient();
 var async= require('async');
 var app =  express();
-
 smtpTransport   = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
