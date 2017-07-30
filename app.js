@@ -14,7 +14,6 @@ smtpTransport   = nodemailer.createTransport({
 })
 var host = "localhost:5000";
 app.use(bodyParser.urlencoded({"extended" : false}));
-
 app.get('/',function(req,res){
     res.sendfile('index.html');
 });
